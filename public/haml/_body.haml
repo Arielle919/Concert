@@ -4,13 +4,13 @@
 .row
   .small-3.columns
     %select#sectionSelect
-      %option.selectNeutral{value: 'selectNeutral'} Select Section
-      %option.ga{value: "ga"} General Admission
-      %option.vip{value: "vip"} VIP Section
+      %option{value:'selectNeutral'} Select Section
+      %option{value:'ga'}General Admission
+      %option{value:'vip'} VIP Section
   .small-3.columns
-    %input#secNum{type: 'text', placeholder: '# of seats?'}
+    %input#seatNum{type: 'text', placeholder: '# of seats?'}
   .small-3.columns
-    %input#secCost{type: 'text', placeholder: 'seat price?'}
+    %input#seatCost{type: 'text', placeholder: 'seat price?'}
   .small-3.columns
     %input#createSeats.button.round{type: 'button', value: 'Create Seats!'}
 .row

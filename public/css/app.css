@@ -4,3 +4,13 @@
   border-bottom-right-radius: 100px;
   border-bottom-left-radius: 100px;
   text-align: center; }
+
+#ga {
+  width: 100%; }
+
+.gaSeat {
+  width: 80px;
+  float: left;
+  border: 1px solid black;
+  margin: 5px;
+  text-align: center; }

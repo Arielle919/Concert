@@ -1,68 +1,73 @@
-// 'use strict';
+'use strict';
 
-// // Firebase Schema
-// var Δdb;
+// Firebase Schema
 
-// // Local Schema (defined in keys.js)
 
-// $(document).ready(initialize);
+// Local Schema (defined in keys.js)
 
-// function initialize(fn, flag){
-//   if(!canRun(flag)) {return;}
+$(document).ready(initialize);
 
-//   $(document).foundation();
-//   Δdb = new Firebase(db.keys.firebase);
-//   initMap(36, -86, 5);
-// }
+function initialize(fn, flag){
+  if(!canRun(flag)) {return;}
+  $(document).foundation();
+  $('#createSeats').click(createSeats);
 
-// // -------------------------------------------------------------------- //
-// // -------------------------------------------------------------------- //
-// // -------------------------------------------------------------------- //
 
-// function initMap(lat, lng, zoom){
-//   var mapOptions = {center: new google.maps.LatLng(lat, lng), zoom: zoom, mapTypeId: google.maps.MapTypeId.ROADMAP};
-//   db.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-// }
+}
 
 // // -------------------------------------------------------------------- //
 // // -------------------------------------------------------------------- //
 // // -------------------------------------------------------------------- //
 
-// function getValue(selector, fn){
-//   var value = $(selector).val();
-//   value = value.trim();
-//   $(selector).val('');
+function createSeats(){
+  var numSeats = getValue('#seatNum', parseInt);
+  for(var i = 1; i <= numSeats; i++){
+    var div = '<div class="gaSeat"><p class="seatNum">ga-' + i + '</p><p class="name"></p></div>';
+    var $div = $(div);
+    $('#ga').append($div);
+  }
+}
 
-//   if(fn){
-//     value = fn(value);
-//   }
-
-//   return value;
-// }
-
-// function parseUpperCase(string){
-//   return string.toUpperCase();
-// }
-
-// function parseLowerCase(string){
-//   return string.toLowerCase();
-// }
-
-// function formatCurrency(number){
-//   return '$' + number.toFixed(2);
-// }
 
 // // -------------------------------------------------------------------- //
 // // -------------------------------------------------------------------- //
 // // -------------------------------------------------------------------- //
 
-// function canRun(flag){
-//   var isQunit = $('#qunit').length > 0;
-//   var isFlag = flag !== undefined;
-//   var value = isQunit && isFlag || !isQunit;
-//   return value;
-// }
+function getValue(selector, fn){
+  var value = $(selector).val();
+  value = value.trim();
+  $(selector).val('');
 
-// // -------------------------------------------------------------------- //
-// // -------------------------------------------------------------------- //
-// // -------------------------------------------------------------------- //
+  if(fn){
+    value = fn(value);
+  }
+
+  return value;
+}
+
+function parseUpperCase(string){
+  return string.toUpperCase();
+}
+
+function parseLowerCase(string){
+  return string.toLowerCase();
+}
+
+function formatCurrency(number){
+  return '$' + number.toFixed(2);
+}
+
+// -------------------------------------------------------------------- //
+// -------------------------------------------------------------------- //
+// -------------------------------------------------------------------- //
+
+function canRun(flag){
+  var isQunit = $('#qunit').length > 0;
+  var isFlag = flag !== undefined;
+  var value = isQunit && isFlag || !isQunit;
+  return value;
+}
+
+// -------------------------------------------------------------------- //
+// -------------------------------------------------------------------- //
+// -------------------------------------------------------------------- //
