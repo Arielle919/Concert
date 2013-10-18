@@ -12,7 +12,55 @@
   <script src='/js/app/keys.js'></script>
 </head>
 <body>
-  <!-- #map-canvas -->
+  <div class='row'>
+    <div class='small-12 columns'>
+      <h1>Concert Tickets</h1>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='small-3 columns'>
+      <select id='sectionSelect'>
+        <option>Select Section</option>
+        <option id='ga'>General Admission</option>
+        <option id='vip'>VIP Section</option>
+      </select>
+    </div>
+    <div class='small-3 columns'>
+      <input id='secNum' placeholder='# of seats?' type='text'>
+    </div>
+    <div class='small-3 columns'>
+      <input id='secCost' placeholder='seat price?' type='text'>
+    </div>
+    <div class='small-3 columns'>
+      <input class='button round' id='createSeats' type='button' value='Create Seats!'>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='small-10 columns'>
+      <div id='stage'>
+        <h2>Stage</h2>
+      </div>
+    </div>
+    <div class='small-2 columns'></div>
+  </div>
+  <div class='row'>
+    <div class='small-10 columns'>
+      <div id='vip'>
+        <h4>VIP</h4>
+      </div>
+    </div>
+    <div class='small-2 columns'>
+      <input id='name' placeholder='name?' type='text'>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='small-10 columns'>
+      <div id='ga'>
+        <h4>General Admission</h4>
+      </div>
+    </div>
+    <div class='small-2 columns'></div>
+  </div>
   <script src='/js/vendor/jquery-1.10.2.js'></script>
   <script src='/js/vendor/foundation.min.js'></script>
   <script src='/js/vendor/underscore.js'></script>

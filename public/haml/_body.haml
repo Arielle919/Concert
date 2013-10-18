@@ -1,1 +1,35 @@
-/#map-canvas
+.row
+  .small-12.columns
+    %h1 Concert Tickets
+.row
+  .small-3.columns
+    %select#sectionSelect
+      %option Select Section
+      %option#ga General Admission
+      %option#vip VIP Section
+  .small-3.columns
+    %input#secNum{type: 'text', placeholder: '# of seats?'}
+  .small-3.columns
+    %input#secCost{type: 'text', placeholder: 'seat price?'}
+  .small-3.columns
+    %input#createSeats.button.round{type: 'button', value: 'Create Seats!'}
+.row
+  .small-10.columns
+    #stage
+      %h2 Stage
+  .small-2.columns
+.row
+  .small-10.columns
+    #vip
+      %h4 VIP
+  .small-2.columns
+    %input#name{type: 'text', placeholder: "name?"}
+.row
+  .small-10.columns
+    #ga
+      %h4 General Admission
+  .small-2.columns
+
+
+
+
