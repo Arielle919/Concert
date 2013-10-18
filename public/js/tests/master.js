@@ -1,14 +1,14 @@
-// 'use strict';
+'use strict';
 
-// module('Integration Testing', {setup: setupTest, teardown: teardownTest});
+module('Integration Testing', {setup: setupTest, teardown: teardownTest});
 
-// function setupTest(){
-//   initialize(null, true);
-// }
+function setupTest(){
+  initialize(null, true);
+}
 
-// function teardownTest(){
-// }
+function teardownTest(){
+}
 
-// test('<name-of-feature>', function(){
-//   expect(1);
-// });
+test('<name-of-feature>', function(){
+  expect(1);
+});

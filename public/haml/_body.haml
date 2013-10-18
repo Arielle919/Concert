@@ -4,9 +4,9 @@
 .row
   .small-3.columns
     %select#sectionSelect
-      %option Select Section
-      %option#ga General Admission
-      %option#vip VIP Section
+      %option.selectNeutral{value: 'selectNeutral'} Select Section
+      %option.ga{value: "ga"} General Admission
+      %option.vip{value: "vip"} VIP Section
   .small-3.columns
     %input#secNum{type: 'text', placeholder: '# of seats?'}
   .small-3.columns
