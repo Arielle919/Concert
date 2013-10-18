@@ -5,14 +5,14 @@
   .small-3.columns
     %select#sectionSelect
       %option Select Section
-      %option#ga Select General Admission
+      %option#ga General Admission
       %option#vip VIP Section
   .small-3.columns
-    %input#secNum{type: 'text', placeholder: '# of seats'}
+    %input#secNum{type: 'text', placeholder: '# of seats?'}
   .small-3.columns
-    %input#secCost{type: 'text', placeholder:'seat price'}
+    %input#secCost{type: 'text', placeholder: 'seat price?'}
   .small-3.columns
-    %input#CreateSeats.button.small{type: 'button', value:'Create Seats!'}
+    %input#createSeats.button.round{type: 'button', value: 'Create Seats!'}
 .row
   .small-10.columns
     #stage
@@ -21,13 +21,12 @@
 .row
   .small-10.columns
     #vip
-      %h4 Vip
+      %h4 VIP
   .small-2.columns
-    %input#name{type:'text', placeholder:'name?'}
+    %input#name{type: 'text', placeholder: "name?"}
 .row
   .small-10.columns
     #ga
-      %h4 General Admissions
+      %h4 General Admission
   .small-2.columns
-
 
