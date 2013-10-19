@@ -26,11 +26,21 @@ test('Number of General Admission Seats', function(){
   expect(1);
 
   $('#sectionSelect option').val('ga').attr('selected',true);
+  $('#sectionSelect option').val('vip').attr('selected',false); //added
   $('#seatNum').val('35');
   $('#seatCost').val('50');
   $('#createSeats').trigger('click');
 
   deepEqual($('#ga > div').length, 35, 'should be 35 seats divs');
+});
 
+test('Number of VIP Seats', function(){
+  expect(1);
+  $('#sectionSelect option').val('vip').attr('selected',true);
+  $('#sectionSelect option').val('ga').attr('selected',false); //added
+  $('#seatNum').val('35');
+  $('#seatCost').val('120');
+  $('#createSeats').trigger('click');
 
+  deepEqual($('#vip > div').length, 35, 'should be 35 seats divs');
 });
