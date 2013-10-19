@@ -4,6 +4,8 @@
 
 
 // Local Schema (defined in keys.js)
+var gaSeats = [];
+var vipSeats = [];
 
 $(document).ready(initialize);
 
@@ -32,11 +34,24 @@ function createSeats(){
   var seatType = $('#sectionSelect').val();
   var numSeats = getValue('#seatNum', parseInt);
 
+
   for(var i = 1; i <= numSeats; i++){
-    var div = '<div class="seat"><p class="seatNum">' + seatType + '-' + i + '</p><p class="name"></p></div>';
+    var div = '<div class="seat"><p class="seatNum">' + seatType + '-' + i + '</p><p class="seatName"></p></div>';
     var $div = $(div);
     $('#' + seatType).append($div);
+
+    if(($('#sectionSelect').val() === 'ga')){
+      gaSeats.push(i);
+    } else if(($('#sectionSelect').val() === 'ga')){
+      vipSeats.push(i);
+    } else {
+
+    }
   }
+
+
+  $('#seatCost').val('');
+
 }
 
 

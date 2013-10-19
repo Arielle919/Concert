@@ -8,7 +8,10 @@
 #ga {
   width: 100%; }
 
-.gaSeat {
+#vip {
+  width: 100%; }
+
+.seat {
   width: 80px;
   float: left;
   border: 1px solid black;
