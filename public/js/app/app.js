@@ -7,7 +7,8 @@
 var gaSeats = [];
 var vipSeats = [];
 var seats = [];
-
+var GaTotalDatas = 0;
+var VipTotalDatas = 0;
 
 $(document).ready(initialize);
 
@@ -24,37 +25,39 @@ function initialize(fn, flag){
 // // -------------------------------------------------------------------- //
 
 function reserveSeat(){
-  debugger;
+
   var $name = $('#name').val();
   var $parentDiv = $(this);
-  var $nameP = $parentDiv.children().next();
+  var $nameP = $parentDiv.children('.seatName');
+
+  var $SeatType = $parentDiv.children().next().prev().text();
+  var $price = $parentDiv.children().next().prev().next().next().text();
+
+
   $parentDiv.addClass('reserved');
 
   $nameP.append($name);
-  cashTotals();
+
+  cashTotals($price);
 }
 
-function cashTotals(){
-  var $seatPrice = $('seats.seat.price');
-  var numbers = _.map($seatPrice, function(seat){return parseFloat($(seat).text());});
-  var sum = _.reduce(numbers, function(memo, num){return memo + num;}, 0);
-  htmlUpdateCash(sum);
-}
+function cashTotals($price){
 
-function htmlUpdateCash(sum){
-  // if the seat type is ga, then put the value in gaTotal
-  //   else
-  //     put the value in vipTotal
-  if(seat.type === 'ga') {
-    $('.gaTotal').text(sum);
-  } else if (seat.type === 'vip') {
-    $('.vipTotal').text(sum);
+  var $GaTotal = $('#gaTotal');
+  var $VipTotal = $('#vipTotal');
+  var price = (parseInt($price,10));//parse int the price
+
+  if(($('#sectionSelect').val() === 'ga')){
+    GaTotalDatas += price * gaSeats.length;
+    $GaTotal.text(GaTotalDatas);
+  } else if(($('#sectionSelect').val() === 'vip')){
+    VipTotalDatas += price * vipSeats.length;
+    $VipTotal.text(VipTotalDatas);
   } else {
 
   }
 
 }
-
 
 function createSeats(){
   var name = $('#name').val();
@@ -64,15 +67,17 @@ function createSeats(){
 
 
   for(var i = 1; i <= numSeats; i++){
-    var div = '<div class="seat"><p class="seatNum">' + seatType + '-' + i + '</p><p class="seatName">' + name + '</p></div>';
+    var div = '<div class="seat"><p class="seatNum">' + seatType + '-' + i + '</p><p class="seatName">' + name + '</p><p class="seatPrice">' + price + '</p></div>';
     var $div = $(div);
+
     $('#' + seatType).append($div);
+
 
     createSeatObject(name, seatType, numSeats, price, i);
 
     if(($('#sectionSelect').val() === 'ga')){
       gaSeats.push(i);
-    } else if(($('#sectionSelect').val() === 'ga')){
+    } else if(($('#sectionSelect').val() === 'vip')){
       vipSeats.push(i);
     } else {
 
