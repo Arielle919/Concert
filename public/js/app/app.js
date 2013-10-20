@@ -24,15 +24,35 @@ function initialize(fn, flag){
 // // -------------------------------------------------------------------- //
 
 function reserveSeat(){
+  debugger;
   var $name = $('#name').val();
-  // var $seatName = $('.seatName');
-  // $seatName = $(this);
-  // $seatName.append($name);
   var $parentDiv = $(this);
   var $nameP = $parentDiv.children().next();
   $parentDiv.addClass('reserved');
 
   $nameP.append($name);
+  cashTotals();
+}
+
+function cashTotals(){
+  var $seatPrice = $('seats.seat.price');
+  var numbers = _.map($seatPrice, function(seat){return parseFloat($(seat).text());});
+  var sum = _.reduce(numbers, function(memo, num){return memo + num;}, 0);
+  htmlUpdateCash(sum);
+}
+
+function htmlUpdateCash(sum){
+  // if the seat type is ga, then put the value in gaTotal
+  //   else
+  //     put the value in vipTotal
+  if(seat.type === 'ga') {
+    $('.gaTotal').text(sum);
+  } else if (seat.type === 'vip') {
+    $('.vipTotal').text(sum);
+  } else {
+
+  }
+
 }
 
 
@@ -68,7 +88,8 @@ function createSeatObject(name, seatType, numSeats, price, i)
   var seat = {};
   seat.name = name;
   seat.number = seatType + '-' + i;
-  seat.price= price;
+  seat.price = price;
+  seat.type = seatType;
 
   seats.push(seat);
 }

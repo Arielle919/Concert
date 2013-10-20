@@ -53,16 +53,35 @@ test('Name in seat', function(){ //*****come back to this*****
   expect(3);
 
   $('#name').val('mary');
-  // $('#seatName').val('');
+  $('#seatName').val('');
   $('.seat').trigger('dblclick');
 
-  deepEqual($('#ga > div.seat').hasClass('reserved'), 'reserved', 'background color should be red');
+  deepEqual($('#ga > div.seat.reserved').hasClass('reserved'), 'should have class of reserved');
 
 
   $('#name').val('bob');
+  $('#seatName').val('');
+  $('.seat').trigger('dblclick');
+
+  deepEqual($('#vip > div.seat.reserved').css('background-color'), 'rgb(255, 0, 0)', 'background color should be red');
+});
+
+test('Cash Totals', function(){
+  expect(3);
+
+  $('#seatNum').val('35');
+  $('#seatCost').val('50');
+  $('#createSeats').trigger('click');
+
+  $('#name').val('mary');
   // $('#seatName').val('');
   $('.seat').trigger('dblclick');
 
-  deepEqual($('#vip > div.seat').css('background-color'), 'rgb(255,0,0)', 'background color should be red');
+  deepEqual($('.gaTotal').text(), '1750', 'total of ga seat cash total should be 1750');
+
+  $('.seat').trigger('dblclick');
+
+  deepEqual($('.vipTotal').text(), '1750', 'total of vip seat cash total should be 1750');
+  deepEqual($('.grandTotal').text(), '3500', 'grand total cash should be 3500');
 });
 
