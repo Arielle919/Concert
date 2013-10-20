@@ -22,8 +22,8 @@ test('DropDown, values, button', function(){
   deepEqual($('#seatCost').val(), '', 'seatCost should be blank');
 });
 
-test('Number of General Admission Seats', function(){
-  expect(2);
+test('Number of Divs and Number of Properties, ', function(){
+  expect(6);
 
   $('#sectionSelect option').val('ga').attr('selected',true);
   $('#seatNum').val('35');
@@ -32,6 +32,9 @@ test('Number of General Admission Seats', function(){
 
   deepEqual($('#ga > div').length, 35, 'should be 35 ga seats divs');
 
+  deepEqual($('#ga > div.seat:nth-child(4) > p').length, 2, 'GA Should be 2 properties in div name and number');
+  deepEqual($('#ga > div.seat:nth-child(4)').text(), 'ga-3', 'In the 4th position ga-5 should appear');//ask child why is this acts as an array
+
   $('#sectionSelect option').val('vip').attr('selected',true);
   $('#seatNum').val('35');
   $('#seatCost').val('50');
@@ -39,13 +42,10 @@ test('Number of General Admission Seats', function(){
 
   deepEqual($('#vip > div').length, 35, 'should be 35 vip seats divs');
 
+  deepEqual($('#vip > div.seat:nth-child(4) > p').length, 2, 'VIP Should be 2 properties in div name and number');
+  deepEqual($('#vip > div.seat:nth-child(4)').text(), 'vip-3', 'In the 4th position vip-5 should appear');//ask child why is this acts as an array
+
+  // deepEqual('seats[4].number').text(), 'vip-5', 'in object number vip-5 should appear');//ask child why is this acts as an array
+
 });
 
-// test('Name Populates Seat <p> on Seat Double-Click', function(){
-//   expect(2);
-//   $('#name').val('mary');
-//   $('#seatCost').val('120');
-//   $('#createSeats').trigger('click');
-
-//   deepEqual($('#vip > div').length, 35, 'should be 35 seats divs');
-// });
