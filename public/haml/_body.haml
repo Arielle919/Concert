@@ -2,31 +2,71 @@
   .small-12.columns
     %h1 Concert Tickets
 .row
-  .small-3.columns
+  .small-4.columns
     %select#sectionSelect
       %option{value:'selectNeutral'} Select Section
       %option{value:'ga'}General Admission
       %option{value:'vip'} VIP Section
-  .small-3.columns
+  .small-2.columns
     %input#seatNum{type: 'text', placeholder: '# of seats?'}
-  .small-3.columns
+  .small-2.columns
     %input#seatCost{type: 'text', placeholder: 'seat price?'}
   .small-3.columns
     %input#createSeats.button.round{type: 'button', value: 'Create Seats!'}
-.row
-  .small-10.columns
-    #stage
-      %h2 Stage
-  .small-2.columns
-.row
-  .small-10.columns
-    #vip
-      %h4 VIP
-  .small-2.columns
+  .small-1.columns
     %input#name{type: 'text', placeholder: "name?"}
 .row
-  .small-10.columns
+  .small-8.columns
+    #stage
+      %h2 Stage
+  .small-4.columns
+    %h4 Reporting
+    %table
+      %tr
+        %td Total VIP:
+        %td.vipTotal
+      %tr
+        %td Total GA:
+        %td.gaTotal
+      %tr
+        %td Grand Total:
+        %td.grandTotal
+      %p
+      %tr
+        %td VIP people:
+        %td.vipPeople
+      %tr
+        %td GA people:
+        %td.gaPeople
+      %tr
+        %td Total People:
+        %td.totalPeople
+.row
+  .small-8.columns
+    #vip
+      %h4 VIP
+  .small-4.columns
+    %h4 Seat List
+    %table
+      %tr
+        %td VIP:
+        %th
+          SEATS
+          %td.vipSeats
+        %th
+          NAME LIST:
+          %td.gaNames
+      %tr
+        %td GA:
+        %th
+          SEATS
+          %td.gaSeats
+        %th
+          NAME LIST:
+          %td.vipNames
+.row
+  .small-8.columns
     #ga
       %h4 General Admission
-  .small-2.columns
+  .small-4.columns
 
