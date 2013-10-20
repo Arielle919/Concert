@@ -6,6 +6,8 @@
 // Local Schema (defined in keys.js)
 var gaSeats = [];
 var vipSeats = [];
+var seats = [];
+
 
 $(document).ready(initialize);
 
@@ -13,22 +15,40 @@ function initialize(fn, flag){
   if(!canRun(flag)) {return;}
   $(document).foundation();
   $('#createSeats').click(createSeats);
-
+  $('#ga').on('dblclick', '.seat', reserveSeat);
+  $('#vip').on('dblclick', '.seat', reserveSeat);
 }
 
 // // -------------------------------------------------------------------- //
 // // -------------------------------------------------------------------- //
 // // -------------------------------------------------------------------- //
 
+function reserveSeat(){
+  var $name = $('#name').val();
+  // var $seatName = $('.seatName');
+  // $seatName = $(this);
+  // $seatName.append($name);
+  var $parentDiv = $(this);
+  var $nameP = $parentDiv.children().next();
+  $parentDiv.addClass('reserved');
+
+  $nameP.append($name);
+}
+
+
 function createSeats(){
+  var name = $('#name').val();
   var seatType = $('#sectionSelect').val();
   var numSeats = getValue('#seatNum', parseInt);
+  var price = $('#seatCost').val();
 
 
   for(var i = 1; i <= numSeats; i++){
-    var div = '<div class="seat"><p class="seatNum">' + seatType + '-' + i + '</p><p class="seatName"></p></div>';
+    var div = '<div class="seat"><p class="seatNum">' + seatType + '-' + i + '</p><p class="seatName">' + name + '</p></div>';
     var $div = $(div);
     $('#' + seatType).append($div);
+
+    createSeatObject(name, seatType, numSeats, price, i);
 
     if(($('#sectionSelect').val() === 'ga')){
       gaSeats.push(i);
@@ -39,9 +59,18 @@ function createSeats(){
     }
   }
 
-
   $('#seatCost').val('');
 
+}
+
+function createSeatObject(name, seatType, numSeats, price, i)
+{
+  var seat = {};
+  seat.name = name;
+  seat.number = seatType + '-' + i;
+  seat.price= price;
+
+  seats.push(seat);
 }
 
 

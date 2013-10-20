@@ -13,7 +13,14 @@
 
 .seat {
   width: 80px;
+  height: 70px;
   float: left;
   border: 1px solid black;
   margin: 5px;
   text-align: center; }
+
+p {
+  margin-bottom: 0; }
+
+.reserved {
+  background-color: red; }
