@@ -14,21 +14,11 @@ function initialize(fn, flag){
   $(document).foundation();
   $('#createSeats').click(createSeats);
 
-
 }
 
 // // -------------------------------------------------------------------- //
 // // -------------------------------------------------------------------- //
 // // -------------------------------------------------------------------- //
-
-// function createSeats(){
-//   var numSeats = getValue('#seatNum', parseInt);
-//   for(var i = 1; i <= numSeats; i++){
-//     var div = '<div class="gaSeat"><p class="seatNum">ga-' + i + '</p><p class="name"></p></div>';
-//     var $div = $(div);
-//     $('#ga').append($div);
-//   }
-// }
 
 function createSeats(){
   var seatType = $('#sectionSelect').val();
