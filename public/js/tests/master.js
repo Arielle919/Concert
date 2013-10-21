@@ -22,8 +22,8 @@ test('DropDown, values, button', function(){
   deepEqual($('#seatCost').val(), '', 'seatCost should be blank');
 });
 
-test('Number of Divs and Number of Properties, ', function(){
-  expect(6);
+test('Number of Divs and Number of Properties and dbl Clicked, ', function(){
+  expect(8);
 
   $('#sectionSelect option').val('ga').attr('selected',true);
   $('#seatNum').val('35');
@@ -32,8 +32,14 @@ test('Number of Divs and Number of Properties, ', function(){
 
   deepEqual($('#ga > div').length, 35, 'should be 35 ga seats divs');
 
-  deepEqual($('#ga > div.seat:nth-child(4) > p').length, 2, 'GA Should be 2 properties in div name and number');
-  deepEqual($('#ga > div.seat:nth-child(4)').text(), 'ga-3', 'In the 4th position ga-5 should appear');//ask child why is this acts as an array
+  deepEqual($('#ga > div.seat:nth-child(4) > p').length, 3, 'GA Should be 3 properties in div name and number');
+  deepEqual($('#ga > div.seat:nth-child(4)').text(), 'ga-350', 'In the 4th position ga-5 should appear');//ask child why is this acts as an array
+
+  $('#name').val('mary');
+  // $('#seatName').val('');
+  $('.seat').trigger('dblclick');
+
+  deepEqual($('#ga > div').hasClass('GaReserved'), true, 'background color should be same as class gaReserved');
 
   $('#sectionSelect option').val('vip').attr('selected',true);
   $('#seatNum').val('35');
@@ -42,27 +48,14 @@ test('Number of Divs and Number of Properties, ', function(){
 
   deepEqual($('#vip > div').length, 35, 'should be 35 vip seats divs');
 
-  deepEqual($('#vip > div.seat:nth-child(4) > p').length, 2, 'VIP Should be 2 properties in div name and number');
-  deepEqual($('#vip > div.seat:nth-child(4)').text(), 'vip-3', 'In the 4th position vip-5 should appear');//ask child why is this acts as an array
-
-  // deepEqual('seats[4].number').text(), 'vip-5', 'in object number vip-5 should appear');//ask child why is this acts as an array
-
-});
-
-test('Name in seat', function(){ //*****come back to this*****
-  expect(3);
-
-  $('#name').val('mary');
-  // $('#seatName').val('');
-  $('.seat').trigger('dblclick');
-
-  deepEqual($('#ga > div.seat').hasClass('reserved'), 'reserved', 'background color should be red');
-
+  deepEqual($('#vip > div.seat:nth-child(4) > p').length, 3, 'VIP Should be 3 properties in div name and number');
+  deepEqual($('#vip > div.seat:nth-child(4)').text(), 'vip-350', 'In the 4th position vip-5 should appear');//ask child why is this acts as an array
 
   $('#name').val('bob');
   // $('#seatName').val('');
   $('.seat').trigger('dblclick');
 
-  deepEqual($('#vip > div.seat').css('background-color'), 'rgb(255,0,0)', 'background color should be red');
-});
+  deepEqual($('#vip > div').hasClass('VipReserved'), true, 'background color should be same as class VipReserved');
 
+
+});
