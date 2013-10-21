@@ -22,8 +22,8 @@ test('DropDown, values, button', function(){
   deepEqual($('#seatCost').val(), '', 'seatCost should be blank');
 });
 
-test('Number of Divs and Number of Properties and dbl Clicked, ', function(){
-  expect(8);
+test('GA Number of Divs and Number of Properties and dbl Clicked, ', function(){
+  expect(5);
 
   $('#sectionSelect option').val('ga').attr('selected',true);
   $('#seatNum').val('35');
@@ -40,7 +40,12 @@ test('Number of Divs and Number of Properties and dbl Clicked, ', function(){
   $('.seat').trigger('dblclick');
 
   deepEqual($('#ga > div').hasClass('GaReserved'), true, 'background color should be same as class gaReserved');
+  deepEqual($('#gaTotal').text(), '1750', 'ga $ total is 1750');
 
+});
+
+test('VIP seat val cost and number, length, and dblclick ', function(){
+  expect(5);
   $('#sectionSelect option').val('vip').attr('selected',true);
   $('#seatNum').val('35');
   $('#seatCost').val('50');
@@ -56,6 +61,7 @@ test('Number of Divs and Number of Properties and dbl Clicked, ', function(){
   $('.seat').trigger('dblclick');
 
   deepEqual($('#vip > div').hasClass('VipReserved'), true, 'background color should be same as class VipReserved');
-
+  deepEqual($('#vipTotal').text(), '1750', 'vip $ total is 1750');
 
 });
+
