@@ -41,7 +41,11 @@ function reserveSeat(){
 
   }
 
-  $nameP.append($name);
+  if(($('.seatName').text() === '')){
+    $nameP.append($name);
+  } else {
+
+  }
 
   cashTotals($price,$SeatType,$name);
 
