@@ -33,10 +33,9 @@ test('GA Number of Divs and Number of Properties and dbl Clicked, ', function(){
   deepEqual($('#ga > div').length, 35, 'should be 35 ga seats divs');
 
   deepEqual($('#ga > div.seat:nth-child(4) > p').length, 3, 'GA Should be 3 properties in div name and number');
-  deepEqual($('#ga > div.seat:nth-child(4)').text(), 'ga-350', 'In the 4th position ga-5 should appear');//ask child why is this acts as an array
+  deepEqual($('#ga > div.seat:nth-child(4) > p:first-child').text(), 'ga-3', 'In the 4th position ga-5 should appear');//ask child why is this acts as an array
 
   $('#name').val('mary');
-  // $('#seatName').val('');
   $('.seat').trigger('dblclick');
 
   deepEqual($('#ga > div').hasClass('GaReserved'), true, 'background color should be same as class gaReserved');
@@ -54,7 +53,7 @@ test('VIP seat val cost and number, length, and dblclick ', function(){
   deepEqual($('#vip > div').length, 35, 'should be 35 vip seats divs');
 
   deepEqual($('#vip > div.seat:nth-child(4) > p').length, 3, 'VIP Should be 3 properties in div name and number');
-  deepEqual($('#vip > div.seat:nth-child(4)').text(), 'vip-350', 'In the 4th position vip-5 should appear');//ask child why is this acts as an array
+  deepEqual($('#vip > div.seat:nth-child(4) > p:first-child').text(), 'vip-3', 'In the 4th position vip-5 should appear');//ask child why is this acts as an array
 
   $('#name').val('bob');
   // $('#seatName').val('');
