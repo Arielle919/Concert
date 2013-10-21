@@ -24,10 +24,10 @@
     %table
       %tr
         %td Total VIP:
-        %td.vipTotal
+        %td#vipTotal
       %tr
         %td Total GA:
-        %td.gaTotal
+        %td#gaTotal
       %tr
         %td Grand Total:
         %td.grandTotal
@@ -48,23 +48,20 @@
   .small-4.columns
     %h4 Seat List
     %table
-      %tr
-        %td VIP:
-        %th
-          SEATS
-          %td.vipSeats
-        %th
-          NAME LIST:
-          %td.gaNames
-      %tr
-        %td GA:
-        %th
-          SEATS
-          %td.gaSeats
-        %th
-          NAME LIST:
-          %td.vipNames
-.row
+      %th
+        VIP:
+      %th.vipSeats
+        SEATS
+      %th.vipNames
+        NAME LIST:
+    %table
+      %th
+        GA:
+      %th.gaSeats
+        SEATS
+      %th.gaNames
+        NAME LIST
+     .row
   .small-8.columns
     #ga
       %h4 General Admission
