@@ -16,15 +16,15 @@ function initialize(fn, flag){
   if(!canRun(flag)) {return;}
   $(document).foundation();
   $('#createSeats').click(createSeats);
-  $('#ga').on('dblclick', '.seat', reserveSeat);
-  $('#vip').on('dblclick', '.seat', reserveSeat);
+  $('#ga').on('dblclick', '.seat', dblclickReserveSeat);
+  $('#vip').on('dblclick', '.seat', dblclickReserveSeat);
 }
 
 // // -------------------------------------------------------------------- //
 // // -------------------------------------------------------------------- //
 // // -------------------------------------------------------------------- //
 
-function reserveSeat(){
+function dblclickReserveSeat(){
 
   var $name = $('#name').val();
   var $parentDiv = $(this);
