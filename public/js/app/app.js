@@ -33,9 +33,9 @@ function reserveSeat(){
   var $SeatType = $parentDiv.children().next().prev().text();
   var $price = $parentDiv.children().next().prev().next().next().text();
 
- if(($('#sectionSelect').val() === 'ga')){
+  if(($parentDiv).hasClass('gahit')){
     $parentDiv.addClass('GaReserved');
-  } else if(($('#sectionSelect').val() === 'vip')){
+  } else if(($parentDiv).hasClass('viphit')){
     $parentDiv.addClass('VipReserved');
   } else {
 
@@ -47,12 +47,12 @@ function reserveSeat(){
 
   }
 
-  cashTotals($price,$SeatType,$name);
+  cashTotals($price,$SeatType,$name,$parentDiv);
 
   $('#name').val('');
 }
 
-function cashTotals($price,$SeatType,$name){
+function cashTotals($price,$SeatType,$name,$parentDiv){
 
 
   var $GaTotal = $('#gaTotal');
@@ -64,7 +64,7 @@ function cashTotals($price,$SeatType,$name){
 
   var price = (parseInt($price,10));//parse int the price
 
-  if(($('#sectionSelect').val() === 'ga')){
+  if(($parentDiv).hasClass('gahit')){
     GaTotalDatas += price;
     $GaTotal.text(GaTotalDatas);
     $grandTotal.text(GaTotalDatas + VipTotalDatas);
@@ -75,7 +75,7 @@ function cashTotals($price,$SeatType,$name){
     var $li = $(li);
     $('#gaAdd').append($li);
 
-  } else if(($('#sectionSelect').val() === 'vip')){
+  } else if(($parentDiv).hasClass('viphit')){
     VipTotalDatas += price;
     $VipTotal.text(VipTotalDatas);
     $grandTotal.text(GaTotalDatas + VipTotalDatas);
@@ -98,27 +98,31 @@ function createSeats(){
   var numSeats = getValue('#seatNum', parseInt);
   var price = $('#seatCost').val();
 
+  createSeatObject(name, seatType, numSeats, price, i);
 
-  for(var i = 1; i <= numSeats; i++){
-    var div = '<div class="seat"><p class="seatNum">' + seatType + '-' + i + '</p><p class="seatName">' + name + '</p><p class="seatPrice">' + price + '</p></div>';
-    var $div = $(div);
+  if(($('#sectionSelect').val() === 'ga')){
+    gaSeats.push(i);
 
-    $('#' + seatType).append($div);
+    for(var i = 1; i <= numSeats; i++){
+      var div = '<div class="seat"><p class="seatNum">' + seatType + '-' + i + '</p><p class="seatName">' + name + '</p><p class="seatPrice">' + price + '</p></div>';
+      var $div = $(div);
+      $div.addClass('gahit');
 
+      $('#ga').append($div);
+    }
+  } else if(($('#sectionSelect').val() === 'vip')){
+    vipSeats.push(j);
 
-    createSeatObject(name, seatType, numSeats, price, i);
+    for(var j = 1; j <= numSeats; j++){
+      var Vdiv = '<div class="seat"><p class="seatNum">' + seatType + '-' + j + '</p><p class="seatName">' + name + '</p><p class="seatPrice">' + price + '</p></div>';
+      var $Vdiv = $(Vdiv);
+      $Vdiv.addClass('viphit');
 
-    if(($('#sectionSelect').val() === 'ga')){
-      gaSeats.push(i);
-    } else if(($('#sectionSelect').val() === 'vip')){
-      vipSeats.push(i);
-    } else {
+      $('#vip').append($Vdiv);
 
     }
+    $('#seatCost').val('');
   }
-
-  $('#seatCost').val('');
-
 }
 
 function createSeatObject(name, seatType, numSeats, price, i)

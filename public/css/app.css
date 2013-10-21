@@ -46,6 +46,5 @@ select {
   background-color: #2284a1;
   color: black; }
 
-#gaAdd > li > .seatType {
-  text-decoration: none;
+li {
   list-style-type: none; }
