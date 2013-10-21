@@ -1,9 +1,13 @@
 #stage {
-  background-color: green;
+  background-color: black;
+  color: #2284a1;
   height: 100px;
   border-bottom-right-radius: 100px;
   border-bottom-left-radius: 100px;
   text-align: center; }
+
+h2 {
+  color: #2284a1; }
 
 #ga {
   width: 100%; }
@@ -19,11 +23,27 @@
   margin: 5px;
   text-align: center; }
 
+.seatPrice {
+  color: green;
+  font-size: small; }
+
 p {
   margin-bottom: 0; }
 
+select {
+  background-color: #2284a1;
+  color: black;
+  height: 30px;
+  border: 2px solid black; }
+
 .GaReserved {
-  background-color: red; }
+  background-color: black;
+  color: #2284a1; }
 
 .VipReserved {
-  background-color: blue; }
+  background-color: #2284a1;
+  color: black; }
+
+#gaAdd > li > .seatType {
+  text-decoration: none;
+  list-style-type: none; }

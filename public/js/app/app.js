@@ -44,6 +44,8 @@ function reserveSeat(){
   $nameP.append($name);
 
   cashTotals($price,$SeatType,$name);
+
+  $('#name').val('');
 }
 
 function cashTotals($price,$SeatType,$name){
@@ -65,7 +67,7 @@ function cashTotals($price,$SeatType,$name){
     $GaReserved.text($('.GaReserved').length);
     $ReservedTotal.text(($('.GaReserved').length) + ($('.VipReserved').length));
 
-    var li = '<li class="seatType">' + $SeatType + $name + '</li>';
+    var li = '<li class="seatType">' + $SeatType +'     '+ $name + '</li>';
     var $li = $(li);
     $('#gaAdd').append($li);
 
@@ -76,7 +78,9 @@ function cashTotals($price,$SeatType,$name){
     $VipReserved.text($('.VipReserved').length);
     $ReservedTotal.text(($('.GaReserved').length) + ($('.VipReserved').length));
 
-    // $('#vipAdd').append($p);
+    var liVip = '<li class="seatType">' + $SeatType +'     '+ $name + '</li>';
+    var $liVip = $(liVip);
+    $('#vipAdd').append($liVip);
 
   } else {
 
