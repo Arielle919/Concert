@@ -16,10 +16,19 @@
   .small-1.columns
     %input#name{type: 'text', placeholder: "name?"}
 .row
-  .small-8.columns
+  .small-12.columns
     #stage
       %h2 Stage
-  .small-4.columns
+.row
+  .small-12.columns
+    #vip
+      %h4 VIP
+.row
+  .small-12.columns
+    #ga
+      %h4 General Admission
+.row
+  .small-6.columns
     %h4 Reporting
     %table
       %tr
@@ -30,43 +39,24 @@
         %td#gaTotal
       %tr
         %td Grand Total:
-        %td.grandTotal
+        %td#grandTotal
       %p
       %tr
         %td VIP people:
-        %td.vipPeople
+        %td#vipPeople
       %tr
         %td GA people:
-        %td.gaPeople
+        %td#gaPeople
       %tr
         %td Total People:
-        %td.totalPeople
-.row
-  .small-8.columns
-    #vip
-      %h4 VIP
-  .small-4.columns
+        %td#totalPeople
+  .small-6.columns
     %h4 Seat List
-    %table
-      %tr
-        %td VIP:
-        %th
-          SEATS
-          %td.vipSeats
-        %th
-          NAME LIST:
-          %td.gaNames
-      %tr
-        %td GA:
-        %th
-          SEATS
-          %td.gaSeats
-        %th
-          NAME LIST:
-          %td.vipNames
-.row
-  .small-8.columns
-    #ga
-      %h4 General Admission
-  .small-4.columns
+    %h5 VIP:
+    %h5 Seat    Name
+    %ul#vipAdd
+    %h5 GA:
+    %h5 Seat    Name
+    %ul#gaAdd
+
 

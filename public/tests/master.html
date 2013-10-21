@@ -42,12 +42,28 @@
       </div>
     </div>
     <div class='row'>
-      <div class='small-8 columns'>
+      <div class='small-12 columns'>
         <div id='stage'>
           <h2>Stage</h2>
         </div>
       </div>
-      <div class='small-4 columns'>
+    </div>
+    <div class='row'>
+      <div class='small-12 columns'>
+        <div id='vip'>
+          <h4>VIP</h4>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='small-12 columns'>
+        <div id='ga'>
+          <h4>General Admission</h4>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='small-6 columns'>
         <h4>Reporting</h4>
         <table>
           <tr>
@@ -60,65 +76,32 @@
           </tr>
           <tr>
             <td>Grand Total:</td>
-            <td class='grandTotal'></td>
+            <td id='grandTotal'></td>
           </tr>
           <p></p>
           <tr>
             <td>VIP people:</td>
-            <td class='vipPeople'></td>
+            <td id='vipPeople'></td>
           </tr>
           <tr>
             <td>GA people:</td>
-            <td class='gaPeople'></td>
+            <td id='gaPeople'></td>
           </tr>
           <tr>
             <td>Total People:</td>
-            <td class='totalPeople'></td>
+            <td id='totalPeople'></td>
           </tr>
         </table>
       </div>
-    </div>
-    <div class='row'>
-      <div class='small-8 columns'>
-        <div id='vip'>
-          <h4>VIP</h4>
-        </div>
-      </div>
-      <div class='small-4 columns'>
+      <div class='small-6 columns'>
         <h4>Seat List</h4>
-        <table>
-          <tr>
-            <td>VIP:</td>
-            <th>
-              SEATS
-              <td class='vipSeats'></td>
-            </th>
-            <th>
-              NAME LIST:
-              <td class='gaNames'></td>
-            </th>
-          </tr>
-          <tr>
-            <td>GA:</td>
-            <th>
-              SEATS
-              <td class='gaSeats'></td>
-            </th>
-            <th>
-              NAME LIST:
-              <td class='vipNames'></td>
-            </th>
-          </tr>
-        </table>
+        <h5>VIP:</h5>
+        <h5>Seat    Name</h5>
+        <ul id='vipAdd'></ul>
+        <h5>GA:</h5>
+        <h5>Seat    Name</h5>
+        <ul id='gaAdd'></ul>
       </div>
-    </div>
-    <div class='row'>
-      <div class='small-8 columns'>
-        <div id='ga'>
-          <h4>General Admission</h4>
-        </div>
-      </div>
-      <div class='small-4 columns'></div>
     </div>
   </div>
   <script src='/js/vendor/jquery-1.10.2.js'></script>
