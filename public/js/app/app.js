@@ -92,10 +92,9 @@ function createSeatObject(name, seatType, numSeats, price, i, j)
   }
 
 function dblclickReserveSeat($this){
-debugger;
   var $name = $('#name').val();
   var $parentDiv = $(this);
-  var index = parseInt(($(this).text().slice(3)), 10);
+  var index = parseInt(($(this).text().slice(-1)), 10) - 1;
 
   // var index = parseInt($(this).text(), 10) - 1;
   var $nameP = $parentDiv.children().next();
@@ -128,7 +127,7 @@ debugger;
 
 // function cashTotals($price,$SeatType,$name,$parentDiv){
 function cashTotals(index){
-  // debugger;
+  debugger;
   var purchased = parseInt(seats[index].price, 10);
   balance += purchased;
   htmlUpdateCash(balance);
