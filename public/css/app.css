@@ -38,11 +38,11 @@ select {
   height: 30px;
   border: 2px solid black; }
 
-.GaReserved {
+.gaReserved {
   background-color: black;
   color: #2284a1; }
 
-.VipReserved {
+.vipReserved {
   background-color: #2284a1;
   color: black; }
 

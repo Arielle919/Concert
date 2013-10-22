@@ -7,6 +7,9 @@
 var gaSeats = [];
 var vipSeats = [];
 var seats = [];
+var balance = 0;
+
+
 var GaTotalDatas = 0;
 var VipTotalDatas = 0;
 
@@ -30,14 +33,13 @@ function clickCreateSeats(){
   var numSeats = getValue('#seatNum', parseInt);
   var price = $('#seatCost').val();
 
-  createSeatObject(name, seatType, numSeats, price, i);
 
   for(var i = 1; i <= numSeats; i++){
-    var div = '<div class="seat"><p class="seatNum">' + i  + '</p><p class="seatName">' + name + '</p></div>';
+    var div = '<div class="seat"><p class="seatNum">' + seatType + '-' + i  + '</p><p class="seatName">' + name + '</p></div>';
     var $div = $(div);
     $('#' + seatType).append($div);
 
-    // createSeatObject(name, seatType, numSeats, price, i);
+    createSeatObject(name, seatType, numSeats, price, i);
 
     if(seatType === 'ga'){
       gaSeats.push(i);
@@ -48,6 +50,7 @@ function clickCreateSeats(){
     } else {
 
     }
+    // debugger;
     $('#seatCost').val('');
   }
 }
@@ -89,24 +92,26 @@ function createSeatObject(name, seatType, numSeats, price, i, j)
   }
 
 function dblclickReserveSeat($this){
-
+debugger;
   var $name = $('#name').val();
   var $parentDiv = $(this);
-  var index = parseInt($(this).text(), 10) - 1;
+  var index = parseInt(($(this).text().slice(3)), 10);
+
+  // var index = parseInt($(this).text(), 10) - 1;
   var $nameP = $parentDiv.children().next();
-  $name = seats[index].name;
+  seats[index].name = $name;
 
 // var $nameP = $parentDiv.children('.seatName');
 // var $SeatType = $parentDiv.children().next().prev().text();
 // var $price = $parentDiv.children().next().prev().next().next().text();
 
-  if(($parentDiv).hasClass('gaSection')){
-    $parentDiv.addClass('gaReserved');
-  } else if(($parentDiv).hasClass('vipSection')){
-    $parentDiv.addClass('vipReserved');
-  } else {
+  // if(($parentDiv).hasClass('gaSection')){
+  //   $parentDiv.addClass('gaReserved');
+  // } else if(($parentDiv).hasClass('vipSection')){
+  //   $parentDiv.addClass('vipReserved');
+  // } else {
 
-  }
+  // }
 
   if($nameP.text() === ''){
     $nameP.append($name);
@@ -123,42 +128,50 @@ function dblclickReserveSeat($this){
 
 // function cashTotals($price,$SeatType,$name,$parentDiv){
 function cashTotals(index){
+  // debugger;
+  var purchased = parseInt(seats[index].price, 10);
+  balance += purchased;
+  htmlUpdateCash(balance);
 
 
-  var $GaTotal = $('#gaTotal');
-  var $VipTotal = $('#vipTotal');
-  var $grandTotal = $('#grandTotal');
-  var $gaReserved = $('#gaPeople');
-  var $vipReserved = $('#vipPeople');
-  var $ReservedTotal = $('#totalPeople');
+  // var $GaTotal = $('#gaTotal');
+  // var $VipTotal = $('#vipTotal');
+  // var $grandTotal = $('#grandTotal');
+  // var $gaReserved = $('#gaPeople');
+  // var $vipReserved = $('#vipPeople');
+  // var $ReservedTotal = $('#totalPeople');
 
-  var price = (parseInt($price,10));//parse int the price
+  // var price = (parseInt($price,10));//parse int the price
 
-  if(($parentDiv).hasClass('gaSection')){
-    GaTotalDatas += price;
-    $GaTotal.text(GaTotalDatas);
-    $grandTotal.text(GaTotalDatas + VipTotalDatas);
-    $GaReserved.text($('.GaReserved').length);
-    $ReservedTotal.text(($('.GaReserved').length) + ($('.vipReserved').length));
+  // if(($parentDiv).hasClass('gaSection')){
+  //   GaTotalDatas += price;
+  //   $GaTotal.text(GaTotalDatas);
+  //   $grandTotal.text(GaTotalDatas + VipTotalDatas);
+  //   $GaReserved.text($('.GaReserved').length);
+  //   $ReservedTotal.text(($('.GaReserved').length) + ($('.vipReserved').length));
 
-    var li = '<li class="seatType">' + $SeatType +'     '+ $name + '</li>';
-    var $li = $(li);
-    $('#gaAdd').append($li);
+  //   var li = '<li class="seatType">' + $SeatType +'     '+ $name + '</li>';
+  //   var $li = $(li);
+  //   $('#gaAdd').append($li);
 
-  } else if(($parentDiv).hasClass('vipSection')){
-    VipTotalDatas += price;
-    $VipTotal.text(VipTotalDatas);
-    $grandTotal.text(GaTotalDatas + VipTotalDatas);
-    $vipReserved.text($('.vipReserved').length);
-    $ReservedTotal.text(($('.GaReserved').length) + ($('.vipReserved').length));
+  // } else if(($parentDiv).hasClass('vipSection')){
+  //   VipTotalDatas += price;
+  //   $VipTotal.text(VipTotalDatas);
+  //   $grandTotal.text(GaTotalDatas + VipTotalDatas);
+  //   $vipReserved.text($('.vipReserved').length);
+  //   $ReservedTotal.text(($('.GaReserved').length) + ($('.vipReserved').length));
 
-    var liVip = '<li class="seatType">' + $SeatType +'     '+ $name + '</li>';
-    var $liVip = $(liVip);
-    $('#vipAdd').append($liVip);
+  //   var liVip = '<li class="seatType">' + $SeatType +'     '+ $name + '</li>';
+  //   var $liVip = $(liVip);
+  //   $('#vipAdd').append($liVip);
 
-  } else {
+  // } else {
 
-  }
+  // }
+
+}
+
+function htmlUpdateCash(){
 
 }
 
