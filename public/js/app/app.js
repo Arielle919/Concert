@@ -7,7 +7,8 @@
 var gaSeats = [];
 var vipSeats = [];
 var seats = [];
-var balance = 0;
+var gaRevenue = 0;
+var vipRevenue = 0;
 
 
 var GaTotalDatas = 0;
@@ -28,59 +29,25 @@ function initialize(fn, flag){
 // // -------------------------------------------------------------------- //
 
 function clickCreateSeats(){
+  // debugger;
   var name = $('#name').val();
   var seatType = $('#sectionSelect').val();
   var numSeats = getValue('#seatNum', parseInt);
-  var price = $('#seatCost').val();
+  var price = getValue('#seatCost', parseFloat);
 
 
   for(var i = 1; i <= numSeats; i++){
     var div = '<div class="seat"><p class="seatNum">' + seatType + '-' + i  + '</p><p class="seatName">' + name + '</p></div>';
     var $div = $(div);
+    $div.addClass(seatType);
+
     $('#' + seatType).append($div);
 
     createSeatObject(name, seatType, numSeats, price, i);
-
-    if(seatType === 'ga'){
-      gaSeats.push(i);
-      $div.addClass(seatType);
-    } else if(seatType === 'vip'){
-      vipSeats.push(i);
-      $div.addClass(seatType);
-    } else {
-
-    }
-    // debugger;
-    $('#seatCost').val('');
   }
 }
 
-//   if(($('#sectionSelect').val() === 'ga')){
-//     gaSeats.push(i);
-
-//     for(var i = 1; i <= numSeats; i++){
-//       var div = '<div class="seat"><p class="seatNum">'+ i + '</p><p class="seatName">' + name + '</p></div>';
-//       var $div = $(div);
-//       $div.addClass('gaSection');
-
-//       $('#ga').append($div);
-//     }
-//   } else if(($('#sectionSelect').val() === 'vip')){
-//     vipSeats.push(i);
-
-//     for(var j = 1; j <= numSeats; j++){
-//       var Vdiv = '<div class="seat"><p class="seatNum">' + j + '</p><p class="seatName">' + name + '</p></div>';
-//       var $Vdiv = $(Vdiv);
-//       $Vdiv.addClass('vipSection');
-
-//       $('#vip').append($Vdiv);
-
-//     }
-//     $('#seatCost').val('');
-//   }
-// }
-
-function createSeatObject(name, seatType, numSeats, price, i, j)
+function createSeatObject(name, seatType, numSeats, price, i)
   {
     var seat = {};
     seat.name = name;
@@ -92,33 +59,38 @@ function createSeatObject(name, seatType, numSeats, price, i, j)
   }
 
 function dblclickReserveSeat($this){
-  var $name = $('#name').val();
-  var $parentDiv = $(this);
-  var index = parseInt(($(this).text().slice(-1)), 10) - 1;
+  // debugger;
+  if($('#name').val() === ''){
 
-  // var index = parseInt($(this).text(), 10) - 1;
-  var $nameP = $parentDiv.children().next();
+  } else {
+    var $name = $('#name').val();
+  }
+
+  var $parentDiv = $(this);
+
+  if($parentDiv.hasClass('ga')){
+    $parentDiv.addClass('gaReserved');
+  } else if($parentDiv.hasClass('vip')){
+    $parentDiv.addClass('vipReserved');
+  } else {
+
+  }
+
+  var index = parseInt(($(this).text().slice(-1)), 10) - 1;
   seats[index].name = $name;
+
+  var $nameP = $parentDiv.children().next();
 
 // var $nameP = $parentDiv.children('.seatName');
 // var $SeatType = $parentDiv.children().next().prev().text();
 // var $price = $parentDiv.children().next().prev().next().next().text();
-
-  // if(($parentDiv).hasClass('gaSection')){
-  //   $parentDiv.addClass('gaReserved');
-  // } else if(($parentDiv).hasClass('vipSection')){
-  //   $parentDiv.addClass('vipReserved');
-  // } else {
-
-  // }
-
   if($nameP.text() === ''){
     $nameP.append($name);
   } else {
 
   }
 
-  cashTotals(index);
+  compileTotals(index, $parentDiv);
   // cashTotals($price,$SeatType,$name,$parentDiv);
   // debugger;
 
@@ -126,11 +98,28 @@ function dblclickReserveSeat($this){
 }
 
 // function cashTotals($price,$SeatType,$name,$parentDiv){
-function cashTotals(index){
-  debugger;
-  var purchased = parseInt(seats[index].price, 10);
-  balance += purchased;
-  htmlUpdateCash(balance);
+
+function compileTotals(index, $parentDiv){
+//   debugger;
+
+//   // var seatsGa = _.filter(seats, function(seat))
+//   // var sum = _.reduce(seats, function(memo, num){var temp = memo + seats[index].price;}, 0);
+
+//   if(seats[index].type = 'ga' && $parentDiv.hasClass('purchased')){
+//     var gaPurchaseTicket = parseFloat(seats[index].price);
+//     gaRevenue += gaPurchaseTicket;
+//     $('#gaTotal').text(gaRevenue);
+//     $('#gaPeople').text('.reserved'.length);
+
+//   } else {
+
+//   }
+
+//   }
+
+  // var purchased = parseFloat(seats[index].price, 10);
+  // balance += purchased;
+  // htmlUpdateCash(balance);
 
 
   // var $GaTotal = $('#gaTotal');

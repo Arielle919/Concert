@@ -30,32 +30,45 @@
 .row
   .small-6.columns
     %h4 Reporting
-    %table
+  .small-2.columns
+    %h4 Seat List
+  .small-2.columns
+    %h5 Seat
+  .small-2.columns
+    %h5 Name
+.row
+  .small-6.columns
+    %table#revenue
       %tr
         %td Total VIP:$
-        %td#vipTotal
+        %td#vipRevenue
       %tr
         %td Total GA: $
-        %td#gaTotal
+        %td#gaRevenue
       %tr
         %td Grand Total: $
-        %td#grandTotal
-      %p
-      %tr
-        %td VIP people:
-        %td#vipPeople
-      %tr
-        %td GA people:
-        %td#gaPeople
-      %tr
-        %td Total People:
-        %td#totalPeople
+        %td#totalRevenue
+  .small-2.columns
+    %h5 VIP
+  .small-2.columns
+    %ul#vipSeatNumber
+  .small-2.columns
+    %ul#vipName
+.row
   .small-6.columns
-    %h4 Seat List
-    %h5 VIP:
-    %h5 Seat    Name
-    %ul#vipAdd
-    %h5 GA:
-    %h5 Seat    Name
-    %ul#gaAdd
-
+    %table#seatCount
+      %tr
+        %td VIP Seats:
+        %td#vipSeats
+      %tr
+        %td GA Seats:
+        %td#gaSeats
+      %tr
+        %td Total Seats:
+        %td#totalSeats
+  .small-2.columns
+    %h5 GA
+  .small-2.columns
+    %ul#gaSeatNumber
+  .small-2.columns
+    %ul#gaName
