@@ -126,15 +126,15 @@ test('Revenue and Seat Reporting', function(){
   $('#seatCost').val('100');
   $('#createSeats').trigger('click');
   $('#name').val('mary');
-  $('.ga .seat div:nth-child(4)').trigger('dblclick'); ///WHAT IS THIS TARGET?
+  $('.ga div.seat:nth-child(5)').trigger('dblclick');
   $('#name').val('bob');
-  $('.ga .seat div:nth-child(10)').trigger('dblclick'); ///WHAT IS THIS TARGET?
+  $('.ga div.seat:nth-child(10)').trigger('dblclick');
   $('#name').val('gary');
-  $('.vip .seat div:nth-child(').trigger('dblclick'); ///WHAT IS THIS TARGET?
+  $('.vip div.seat:nth-child(4)').trigger('dblclick');
   $('#name').val('alice');
-  $('.vip.seat').trigger('dblclick');  ///WHAT IS THIS TARGET?
+  $('.vip div.seat:nth-child(7)').trigger('dblclick');
   $('#name').val('sally');
-  $('.vip.seat').trigger('dblclick');  ///WHAT IS THIS TARGET?
+  $('.vip div.seat:nth-child(10)').trigger('dblclick');
 
   deepEqual($('#revenue  tr  #gaRevenue').text(), '$70.00', 'should have $70.00 in GA Revenue');
   deepEqual($('#revenue  tr  #vipRevenue').text(), '300.00', 'should have $300.00 in VIP Revenue');

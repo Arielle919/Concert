@@ -16,14 +16,13 @@ h2
 #ga
 {
   width: 100%;
-  border-top: 2px solid #2284a1;
-  border-bottom: 2px solid #2284a1;
+  // border-bottom: 2px solid #2284a1;
 }
 
 #vip
 {
   width: 100%;
-  // border-top: 2px solid #2284a1;
+  border-bottom: 2px solid #2284a1;
 }
 
 .seat
@@ -54,13 +53,13 @@ select
   border: 2px solid black;
 }
 
-.gaReserved
+.gaPurchased
 {
   background-color: black;
   color: #2284a1;
 }
 
-.vipReserved
+.vipPurchased
 {
   background-color: #2284a1;
   color: black;

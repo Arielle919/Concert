@@ -30,7 +30,7 @@ function initialize(fn, flag){
 
 function clickCreateSeats(){
   // debugger;
-  var name = $('#name').val();
+  // var name = $('#name').val();
   var seatType = $('#sectionSelect').val();
   var numSeats = getValue('#seatNum', parseInt);
   var price = getValue('#seatCost', parseFloat);
@@ -44,6 +44,7 @@ function clickCreateSeats(){
     $('#' + seatType).append($div);
 
     createSeatObject(name, seatType, numSeats, price, i);
+
   }
 }
 
@@ -60,62 +61,66 @@ function createSeatObject(name, seatType, numSeats, price, i)
 
 function dblclickReserveSeat($this){
   // debugger;
-  if($('#name').val() === ''){
-
-  } else {
-    var $name = $('#name').val();
-  }
-
+  if($('#name').val() === ''){} //need to come back to this - what do i do to make nothing else execute?
+  var $name = $('#name').val();
   var $parentDiv = $(this);
-
-  if($parentDiv.hasClass('ga')){
-    $parentDiv.addClass('gaReserved');
-  } else if($parentDiv.hasClass('vip')){
-    $parentDiv.addClass('vipReserved');
-  } else {
-
-  }
-
   var index = parseInt(($(this).text().slice(-1)), 10) - 1;
   seats[index].name = $name;
 
+
+  if($parentDiv.hasClass('ga')){
+    $parentDiv.addClass('gaPurchased');
+  } else if($parentDiv.hasClass('vip')){
+    $parentDiv.addClass('vipPurchased');
+  } else {}
+
   var $nameP = $parentDiv.children().next();
 
-// var $nameP = $parentDiv.children('.seatName');
-// var $SeatType = $parentDiv.children().next().prev().text();
-// var $price = $parentDiv.children().next().prev().next().next().text();
   if($nameP.text() === ''){
     $nameP.append($name);
-  } else {
+  } else {}
 
-  }
-
-  compileTotals(index, $parentDiv);
-  // cashTotals($price,$SeatType,$name,$parentDiv);
-  // debugger;
+  compileReport(index, $parentDiv);
 
   $('#name').val('');
 }
 
-// function cashTotals($price,$SeatType,$name,$parentDiv){
+function compileReport(index, $parentDiv){
+  debugger;
 
-function compileTotals(index, $parentDiv){
-//   debugger;
+  if($parentDiv.hasClass('gaPurchased')){
+    gaRevenue += seats[index].price;
+    $('td#gaTotal').text(formatCurrency(gaRevenue));
+    $('td#gaSeats').text($('.gaPurchased').length);
 
-//   // var seatsGa = _.filter(seats, function(seat))
-//   // var sum = _.reduce(seats, function(memo, num){var temp = memo + seats[index].price;}, 0);
+    var $gaNameLi = '<li class="gaSeatName">' + seats[index].name + '</li>';
+    $('ul#gaSeatNames').append($gaNameLi);
 
-//   if(seats[index].type = 'ga' && $parentDiv.hasClass('purchased')){
-//     var gaPurchaseTicket = parseFloat(seats[index].price);
-//     gaRevenue += gaPurchaseTicket;
-//     $('#gaTotal').text(gaRevenue);
-//     $('#gaPeople').text('.reserved'.length);
+    var $gaNumberLi = '<li class="gaSeatNumber">' + seats[index].number + '</li>';
+    $('ul#gaSeatNumbers').append($gaNumberLi);
 
-//   } else {
+  } else if ($parentDiv.hasClass('vipPurchased')) {
+    // var vipPurchaseMoney = parseFloat(seats[index].price);
 
-//   }
+    vipRevenue += seats[index].price;
+    $('td#vipTotal').text(formatCurrency(vipRevenue));
+    $('td#vipSeats').text($('.vipPurchased').length);
 
-//   }
+    var $vipNameLi = '<li class="vipSeatName">' + seats[index].name + '</li>';
+    $('ul#vipSeatNames').append($vipNameLi);
+
+    var $vipNumberLi = '<li class="vipSeatNumber">' + seats[index].number + '</li>';
+    $('ul#vipSeatNumbers').append($vipNumberLi);
+
+  } else {}
+
+  var $totalRevenue = gaRevenue + vipRevenue;
+  $('td#totalRevenue').text(formatCurrency($totalRevenue));
+
+  var $totalSeats = $('.gaPurchased').length + $('.vipPurchased').length;
+  $('td#totalSeats').text($totalSeats);
+
+}
 
   // var purchased = parseFloat(seats[index].price, 10);
   // balance += purchased;
@@ -157,7 +162,7 @@ function compileTotals(index, $parentDiv){
 
   // }
 
-}
+// }
 
 function htmlUpdateCash(){
 
