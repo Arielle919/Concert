@@ -4,15 +4,11 @@
 
 
 // Local Schema (defined in keys.js)
-var gaSeats = [];
-var vipSeats = [];
+// var gaSeats = [];
+// var vipSeats = [];
 var seats = [];
 var gaRevenue = 0;
 var vipRevenue = 0;
-
-
-var GaTotalDatas = 0;
-var VipTotalDatas = 0;
 
 $(document).ready(initialize);
 
@@ -34,6 +30,7 @@ function clickCreateSeats(){
   var seatType = $('#sectionSelect').val();
   var numSeats = getValue('#seatNum', parseInt);
   var price = getValue('#seatCost', parseFloat);
+  var $option = $('<option>').val(seatType);
 
 
   for(var i = 1; i <= numSeats; i++){
@@ -44,6 +41,7 @@ function clickCreateSeats(){
     $('#' + seatType).append($div);
 
     createSeatObject(name, seatType, numSeats, price, i);
+    $option.addClass('hidden'); //WHY IS THIS NOT WORKING?
 
   }
 }
@@ -61,24 +59,23 @@ function createSeatObject(name, seatType, numSeats, price, i)
 
 function dblclickReserveSeat($this){
   // debugger;
-  if($('#name').val() === ''){} //need to come back to this - what do i do to make nothing else execute?
+  if($('#name').val() === ''){return;}
   var $name = $('#name').val();
   var $parentDiv = $(this);
   var index = parseInt(($(this).text().slice(-1)), 10) - 1;
   seats[index].name = $name;
 
-
   if($parentDiv.hasClass('ga')){
-    $parentDiv.addClass('gaPurchased');
+    $parentDiv.addClass('gaReserved');
   } else if($parentDiv.hasClass('vip')){
-    $parentDiv.addClass('vipPurchased');
-  } else {}
+    $parentDiv.addClass('vipReserved');
+  } else {return;}
 
   var $nameP = $parentDiv.children().next();
 
   if($nameP.text() === ''){
     $nameP.append($name);
-  } else {}
+  } else {return;}
 
   compileReport(index, $parentDiv);
 
@@ -88,38 +85,36 @@ function dblclickReserveSeat($this){
 function compileReport(index, $parentDiv){
   debugger;
 
-  if($parentDiv.hasClass('gaPurchased')){
+  if($parentDiv.hasClass('gaReserved')){
     gaRevenue += seats[index].price;
-    $('td#gaTotal').text(formatCurrency(gaRevenue));
-    $('td#gaSeats').text($('.gaPurchased').length);
+    $('#gaRevenue').text(formatCurrency(gaRevenue));
+    $('#gaSeats').text($('.gaReserved').length); //ok
 
     var $gaNameLi = '<li class="gaSeatName">' + seats[index].name + '</li>';
-    $('ul#gaSeatNames').append($gaNameLi);
+    $('#gaSeatNames').append($gaNameLi);
 
-    var $gaNumberLi = '<li class="gaSeatNumber">' + seats[index].number + '</li>';
-    $('ul#gaSeatNumbers').append($gaNumberLi);
+    var $gaNumberLi = '<li class="gaSeatNumber">' + seats[index].number + '</li>'; //ok
+    $('#gaSeatNumbers').append($gaNumberLi); //ok
 
-  } else if ($parentDiv.hasClass('vipPurchased')) {
+  } else if ($parentDiv.hasClass('vipReserved')) {
     // var vipPurchaseMoney = parseFloat(seats[index].price);
 
     vipRevenue += seats[index].price;
-    $('td#vipTotal').text(formatCurrency(vipRevenue));
-    $('td#vipSeats').text($('.vipPurchased').length);
+    $('#vipRevenue').text(formatCurrency(vipRevenue));
+    $('#vipSeats').text($('.vipReserved').length);
 
     var $vipNameLi = '<li class="vipSeatName">' + seats[index].name + '</li>';
-    $('ul#vipSeatNames').append($vipNameLi);
+    $('#vipSeatNames').append($vipNameLi);
 
     var $vipNumberLi = '<li class="vipSeatNumber">' + seats[index].number + '</li>';
-    $('ul#vipSeatNumbers').append($vipNumberLi);
+    $('#vipSeatNumbers').append($vipNumberLi);
 
   } else {}
 
-  var $totalRevenue = gaRevenue + vipRevenue;
-  $('td#totalRevenue').text(formatCurrency($totalRevenue));
+  $('#totalRevenue').text(formatCurrency(gaRevenue + vipRevenue));
 
-  var $totalSeats = $('.gaPurchased').length + $('.vipPurchased').length;
-  $('td#totalSeats').text($totalSeats);
-
+  var $totalSeats = $('.gaReserved').length + $('.vipReserved').length;
+  $('#totalSeats').text($totalSeats);
 }
 
   // var purchased = parseFloat(seats[index].price, 10);

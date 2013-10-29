@@ -37,11 +37,11 @@ select {
   height: 30px;
   border: 2px solid black; }
 
-.gaPurchased {
+.gaReserved {
   background-color: black;
   color: #2284a1; }
 
-.vipPurchased {
+.vipReserved {
   background-color: #2284a1;
   color: black; }
 

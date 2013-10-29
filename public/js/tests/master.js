@@ -150,9 +150,9 @@ test('Revenue and Seat Reporting', function(){
   deepEqual($('#vipName li').length, 3, 'should be 3 VIP seat names in Seat List');
 
   deepEqual($('#vipSeatNumber li:nth-child(2)').text('alice'), 'alice', 'should have alice in 2nd vip list name position');
-  deepEqual($('#vipName li:nth-child(2)').text('vip-??????'), 'vip=?????', 'should have VIP-??? in 2nd vip list seat position');
+  deepEqual($('#vipName li:nth-child(2)').text('vip-2'), 'vip-2', 'should have VIP-??? in 2nd vip list seat position');
   deepEqual($('#gaSeatNumber li:nth-child(2)').text('bob'), 'bob', 'should have bob in 2nd ga list name position');
-  deepEqual($('#gaName li:nth-child(2)').text('ga-??????'), 'ga-?????', 'should have GA-??? in 2nd ga list seat position');
+  deepEqual($('#gaName li:nth-child(2)').text('ga-2'), 'ga-2', 'should have GA-??? in 2nd ga list seat position');
 
 });
   // deepEqual($('#gaTotal').text(), '1750', 'ga $ total is 1750');
